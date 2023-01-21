@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}Update{% endblock title %}
+
+{% block body %}
+
+<div class="container my-2">
+    <h2 class="text-center">Update a Todo</h2>
+    <form method="post">
+        {% csrf_token %}
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Title</label>
+          <input type="text" class="form-control" value="{{todo.title}}" id="title" name="title">
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">Description</label>
+          <input type="text" class="form-control" value="{{todo.desc}}" id="desc" name="desc">
+        </div>
+        
+        <button type="submit" class="btn btn-dark">Update a Todo</button>
+      </form>
+
+{% endblock body %}

@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock title %}
+
+{% block body %}
+
+<div class="container my-2">
+    <h2 class="text-center">Add a Todo</h2>
+    <form method="post">
+        {% csrf_token %}
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Title</label>
+          <input type="text" class="form-control" id="title" name="title">
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">Description</label>
+          <input type="text" class="form-control" id="desc" name="desc">
+        </div>
+        
+        <button type="submit" class="btn btn-dark">Add a Todo</button>
+      </form>
+      <h2 class="text-center">Your Todos</h2>
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">SNo</th>
+            <th scope="col">Title</th>
+            <th scope="col">Desc</th>
+            <th scope="col">Date & Time</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for td in todo %}
+          <tr>
+            <th scope="row">{{forloop.counter}}</th>
+            <td>{{td.title}}</td>
+            <td>{{td.desc}}</td>
+            <td>{{td.date_time}}</td>
+            <td>
+            <a href="/update/{{td.pk}}"><button type="button" class="btn btn-dark">Update</button></a>
+            <a href="/delete/{{td.pk}}"><button type="button" class="btn btn-dark">Delete</button></a>
+            </td>
+          </tr>
+          {% endfor %}
+          
+         
+        </tbody>
+      </table>
+</div>
+    
+{% endblock body %}
